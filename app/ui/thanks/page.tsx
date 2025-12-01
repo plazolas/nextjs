@@ -192,7 +192,7 @@ export default function Page() {
             </div>
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col grow justify-center gap-6 rounded-lg bg-green-landscape px-4 py-8 md:w-2/5 md:px-20">
-                    <Form />
+                    <center><h2 className="text-[32px]">We will contact you shortly!</h2></center>
                 </div>
                 <div className="flex flex-col justify-center rounded-lg bg-blue-landscape px-4 py-1 md:w-2/5 md:px-20">
                     <center><h2 className="text-[32px]">The Crew</h2></center>

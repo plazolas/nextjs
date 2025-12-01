@@ -16,3 +16,17 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.bg-blue-landscape {
+  background: #27e3fe;
+}
+
+.bg-green-landscape {
+  background-color: #5bac52;
+  color: white;
+}
+
+.spacer {
+  flex: 1;
+}
+

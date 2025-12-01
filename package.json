@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@auth/core": "^0.34.3",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/forms": "^0.5.10",
     "autoprefixer": "10.4.20",
@@ -25,8 +26,8 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/node": "22.10.7",
-    "@types/react": "19.0.7",
-    "@types/react-dom": "19.0.3"
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
