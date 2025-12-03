@@ -1,3 +1,4 @@
+'use client';
 import {
   PhoneIcon,
   EnvelopeIcon,
@@ -5,10 +6,36 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import { createUser } from '@/app/lib/actions';
+import { z } from 'zod';
+import {saveUser} from "@/app/lib/data";
+import {redirect} from "next/navigation";
+
+const FormSchema = z.object({
+  phone: z.string(),
+  email: z.string(),
+  name: z.string(),
+});
 
 export default function Form() {
+  const createContact = async (formData: FormData) => {
+
+    const { name, phone, email } = FormSchema.parse({
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email')
+    });
+    const date = new Date().toISOString().split('T')[0];
+
+    try {
+      await saveUser(name, phone, email, date);
+    } catch (error) {
+      console.error(error);
+    }
+    redirect('/ui/thanks');
+  }
+
   return (
-      <form action={createUser}>
+      <form action={createContact}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         <center><h1 className="text-black content-center text-[32px]">CONTACT US</h1></center>
         {/* Customer Name */}
