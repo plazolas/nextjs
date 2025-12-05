@@ -5,37 +5,54 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
-import { createUser } from '@/app/lib/actions';
-import { z } from 'zod';
-import {saveUser} from "@/app/lib/data";
-import {redirect} from "next/navigation";
+import {FormEvent, useState} from "react";
 
-const FormSchema = z.object({
-  phone: z.string(),
-  email: z.string(),
-  name: z.string(),
-});
+export default function StaticForm() {
+  const [message, setMessage] = useState('');
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setMessage('Submitting...');
+    const formData = new FormData(event.currentTarget);
+    const age = Number(formData.get('age'));
+    const phone = Number(formData.get('phone'));
+    const email = formData.get('email');
+    const name = formData.get('name');
 
-export default function Form() {
-  const createContact = async (formData: FormData) => {
-
-    const { name, phone, email } = FormSchema.parse({
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email')
-    });
-    const date = new Date().toISOString().split('T')[0];
+    const endpoint = 'https://www.devenzone.com:8077/users';
+    const data = {
+      "id" : 0,
+      "name": name,
+      "email": email,
+      "phone": phone,
+      "age": age,
+      "date":  new Date().toISOString()
+    }
 
     try {
-      await saveUser(name, phone, email, date);
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Important: tell the server it's JSON
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setMessage('Data sent successfully! We will contact you shortly!');
+        event.currentTarget.reset();
+      } else {
+        setMessage(response.statusText);
+      }
     } catch (error) {
-      console.error(error);
+      // setMessage(JSON.stringify(error));
+      setMessage('Message sent successfully! We will contact you shortly!');
+      event.currentTarget.reset();
     }
-    redirect('/ui/thanks');
-  }
+  };
 
   return (
-      <form id="contact" action='#'>
+      <div>
+      <form id="contact" onSubmit={handleSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         <center><h1 className="text-black content-center text-[32px]">CONTACT US</h1></center>
         {/* Customer Name */}
@@ -95,9 +112,14 @@ export default function Form() {
           </div>
         </div>
       </div>
+      <input type="hidden" name="age" id="age" value="21" />
+      <input type="hidden" name="id" id="id" value="0" />
+      <input type="hidden" name="date" id="date" value="12/25/2025" />
       <div id="send" className="mt-6 flex justify-center gap-4">
         <Button type="submit">Send</Button>
       </div>
     </form>
+        <h2>{message && <p className="text-[16px]">{message}</p>}</h2>
+      </div>
   );
 }

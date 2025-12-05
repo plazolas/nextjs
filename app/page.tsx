@@ -4,15 +4,16 @@ import Link from 'next/link';
 import {lusitana} from '@/app/ui/fonts';
 import Form from '@/app/create-form';
 import Image from 'next/image';
+import StaticForm from "@/app/static-form";
 
 export default function Page() {
     return (
         <main className="flex min-h-screen flex-col p-6">
-            <div className="flex item h-20 shrink-0 items-end rounded-lg bg-blue-landscape p-4 md:h-52">
+            <div className="flex item h-20 shrink-0 items-end rounded-lg bg-blue-landscape p-0 md:h-52">
                 <div className="col-last">
                     <a href="https://www.devenzone.com/public" title="Yardwork Professional">
                         <Image
-                            src="/logo.png"
+                            src="/public/logo.png"
                             width={50}
                             height={50}
                             className="block"
@@ -32,7 +33,7 @@ export default function Page() {
                     <div className="flex justify-center">
                         <a href="tel:4074801670" title="Call now!">
                             <Image
-                                src="/sign.png"
+                                src="/public/sign.png"
                                 width={600}
                                 height={150}
                                 className="content-center"
@@ -87,7 +88,7 @@ export default function Page() {
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
                     <Image
-                        src="/landscape-design.jpg"
+                        src="/public/landscape-design.jpg"
                         width={500}
                         height={300}
                         className="block"
@@ -115,7 +116,7 @@ export default function Page() {
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col justify-center rounded-lg bg-gray-200 px-1 py-1 md:w-2/5 md:px-20">
                     <Image
-                        src="/custom-curbing-800x450.jpg"
+                        src="/public/custom-curbing-800x450.jpg"
                         width={500}
                         height={300}
                         className="block"
@@ -144,7 +145,7 @@ export default function Page() {
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col justify-center rounded-lg bg-gray-50 px-1 py-1 md:w-2/5 md:px-20">
                     <Image
-                        src="/palms-trees-and-shrubs-800x450.jpg"
+                        src="/public/palms-trees-and-shrubs-800x450.jpg"
                         width={500}
                         height={300}
                         className="block"
@@ -168,7 +169,7 @@ export default function Page() {
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col justify-center rounded-lg bg-gray-200 px-1 py-1 md:w-2/5 md:px-20">
                     <Image
-                        src="/irrigation-800x450.jpg"
+                        src="/public/irrigation-800x450.jpg"
                         width={500}
                         height={300}
                         className="block"
@@ -192,12 +193,12 @@ export default function Page() {
             </div>
             <div className="item mt-4 flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-col grow justify-center gap-6 rounded-lg bg-green-landscape px-4 py-8 md:w-2/5 md:px-20">
-                    <Form />
+                    <StaticForm />
                 </div>
                 <div className="flex flex-col justify-center rounded-lg bg-blue-landscape px-4 py-1 md:w-2/5 md:px-20">
                     <center><h2 className="text-[32px]">The Crew</h2></center>
                     <Image
-                        src="/crew.jpg"
+                        src="/public/crew.jpg"
                         width={500}
                         height={300}
                         className="block"
@@ -206,6 +207,5 @@ export default function Page() {
                 </div>
             </div>
         </main>
-    )
-        ;
+    );
 }
